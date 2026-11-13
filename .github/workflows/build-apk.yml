@@ -17,7 +17,10 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Organize Project Files & Build
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Organize Project Files
         run: |
           mkdir -p app/src/main/java/com/hyundai/creta/oemlauncher
           mkdir -p app/src/main/res/layout
@@ -81,11 +84,6 @@ jobs:
               implementation("androidx.appcompat:appcompat:1.6.1")
           }
           EOF
-
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v3
-        with:
-          gradle-version: '8.4'
 
       - name: Build Debug APK
         run: gradle assembleDebug
